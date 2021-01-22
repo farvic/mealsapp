@@ -1,0 +1,19 @@
+# Check out https://docs.codemagic.io/getting-started/building-a-native-ios-app/ for more information
+# Please review and update values in curly braces
+
+workflows:
+  ios-app:
+    name: Meals App
+    environment:
+      vars:
+        XCODE_WORKSPACE: "MealsApp Example"
+        XCODE_SCHEME: "{{ ADD SCHEME NAME HERE }}"
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+      - flutter packages pub get
+      - flutter test
+    artifacts:
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
