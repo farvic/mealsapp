@@ -7,7 +7,7 @@ workflows:
     environment:
       vars:
         XCODE_WORKSPACE: "MealsApp Example"
-        XCODE_SCHEME: "{{ ADD SCHEME NAME HERE }}"
+        XCODE_SCHEME: "mealsscheme"
       xcode: latest
       cocoapods: default
     scripts:
